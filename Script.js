@@ -18,11 +18,6 @@ const btnCart = document.getElementById("btn-cart");
 let cart = []
 loadMenu("all");
 
-
-setInterval(() => {
-  fetchAndRenderOrders(); 
-}, 10000);
-
 gradeSelect.addEventListener("change", function () {
   if (this.value === "Others") {
     classGroup.style.display = "none";
@@ -633,3 +628,8 @@ document.addEventListener("DOMContentLoaded", () => {
       updateCartDisplay();
     });
   }
+
+setInterval(() => {
+  fetchAndRenderOrders(); 
+}, 10000);
+
