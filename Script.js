@@ -793,7 +793,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  window.addEventListener("load", () => spawnBats(8));
+  window.addEventListener("load", () => spawnBats(100));
 
   const ghostContainer = document.getElementById('ghost-container');
   const ghostImg = "ghost.png"; // use your ghost image here
@@ -825,3 +825,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
