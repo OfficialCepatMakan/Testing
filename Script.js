@@ -358,7 +358,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
         setTimeout(() => {
-          container.scrollTop = lastscrollContainer;
+          scrollContainer.scrollTop = lastscrollContainer;
           console.log('Forced scroll restore:', lastscrollContainer);
         }, 0);
       }
@@ -846,4 +846,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
 
