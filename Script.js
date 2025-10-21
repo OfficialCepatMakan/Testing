@@ -176,15 +176,16 @@ document.addEventListener("DOMContentLoaded", () => {
         return `${dd}/${mm}/${yy}`;
       }
   
-      let lastScrollPos = 0;
-      const scrollPos = document.getElementById('orders-section');
+      let lastscrollContainer = 0;
+      const scrollContainer = document.getElementById('orders-section');
 
-      scrollPos.addEventListener('scroll', () => {
-        lastScrollPos = scrollPos.scrollTop;
-        console.log(lastScrollPos)
+      scrollContainer.addEventListener('scroll', () => {
+        lastscrollContainer = scrollContainer.scrollTop;
+        console.log(lastscrollContainer)
       });
       
       function fetchAndRenderOrders(mail, admins, courier) {
+        console.log(lastscrollContainer)
         console.log(mail);
         console.log(admins);
         const ordersRef = db.ref('Orders');
@@ -353,8 +354,8 @@ document.addEventListener("DOMContentLoaded", () => {
           }); // end each dateKey
         
           // restore scroll
-          scrollPos.scrollTop = lastScrollPos;
-          console.log(scrollPos)
+          scrollContainer.scrollTop = lastscrollContainer;
+          console.log(scrollContainer)
         
           // admin summary
           if (admins.includes(mail)) {
@@ -846,6 +847,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
 
 
 
