@@ -358,14 +358,15 @@ document.addEventListener("DOMContentLoaded", () => {
           }
           requestAnimationFrame(() => {
             requestAnimationFrame(() => {
-              const container = document.getElementById('orders-scroll');
-              if (container) {
-                container.scrollTop = lastscrollContainer;
-                console.log('Scroll really restored:', lastscrollContainer);
-              }
+              setTimeout(() => {
+                const container = document.getElementById('orders-scroll');
+                if (container) {
+                  container.scrollTop = lastscrollContainer;
+                console.log('Scroll *actually* restored:', lastscrollContainer, 'Now at:', container.scrollTop);
+                  }
+              }, 50);
             });
           });
-        });
       }
 
     document.getElementById('order-btn').addEventListener('click', function () {
@@ -851,5 +852,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
 
 
