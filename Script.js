@@ -175,6 +175,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const yy = String(d.getFullYear()).slice(-2);
         return `${dd}/${mm}/${yy}`;
       }
+  
+      let lastScrollPos = 0;
+      const scrollPos = document.getElementById('orders-section');
+
+      scrollPos.addEventListener('scroll', () => {
+        lastScrollPos = scrollContainer.scrollTop;
+      });
       
       function fetchAndRenderOrders(mail, admins, courier) {
         console.log(mail);
@@ -186,9 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
           console.error("No #orders-list element found in DOM");
           return;
         }
-        const scrollPos = ordersSection.scrollTop;
-        console.log(scrollPos)
-        console.log(scrollPos)
+        console.log(lastScrollPos)
         ordersList.innerHTML = ''; // clear existing orders
         const isCourier = Array.isArray(courier) ? courier.includes(mail) : (courier === mail);
       
@@ -349,7 +354,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }); // end each dateKey
         
           // restore scroll
-          ordersSection.scrollTop = scrollPos;
+          ordersSection.scrollTop = lastScrollPos;
         
           // admin summary
           if (admins.includes(mail)) {
@@ -841,5 +846,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
 
 
