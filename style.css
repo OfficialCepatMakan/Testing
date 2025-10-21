@@ -177,10 +177,15 @@
       transform: translateY(-70px);
     }
 
-    #orders-scroll {
-      height: 95vh;
-      overflow-y: auto;
-    }
+   #orders-scroll {
+     height: 95vh;
+     overflow-y: scroll;
+     scrollbar-width: none; /* Firefox */
+   }
+
+   #orders-scroll::-webkit-scrollbar {
+     display: none; /* Chrome, Safari, Edge */
+   }
 
     .hero-content h1 {
       font-size: 3.5rem;
@@ -1018,5 +1023,6 @@
             grid-template-columns: 1fr;
         }
     }
+
 
 
