@@ -177,6 +177,11 @@
       transform: translateY(-70px);
     }
 
+    .orders-section {
+      height: 95vh;
+      overflow-y: auto;
+    }
+
     .hero-content h1 {
       font-size: 3.5rem;
       margin-bottom: 10px;
