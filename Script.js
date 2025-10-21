@@ -357,10 +357,13 @@ document.addEventListener("DOMContentLoaded", () => {
             renderAdminItemSummary(snapshot, ordersList);
           }
         });
-        setTimeout(() => {
-          scrollContainer.scrollTop = lastscrollContainer;
-          console.log('Forced scroll restore:', lastscrollContainer);
-        }, 0);
+        window.addEventListener('load', () => {
+          setTimeout(() => {
+            const container = document.getElementById('orders-scroll');
+            container.scrollTop = lastscrollContainer;
+            console.log('Restored scroll after full load:', lastscrollContainer);
+          }, 0);
+        });
       }
 
     document.getElementById('order-btn').addEventListener('click', function () {
