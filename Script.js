@@ -357,7 +357,8 @@ document.addEventListener("DOMContentLoaded", () => {
             renderAdminItemSummary(snapshot, ordersList);
           }
         });
-        scrollContainer.scrollTop = lastscrollContainer;
+        const container = getElementById("orders-section")
+        container.scrollTop = lastscrollContainer;
         console.log(`After: ${lastscrollContainer}`)
       }
 
@@ -844,13 +845,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
-
-
-
-
-
-
-
-
-
-
