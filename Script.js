@@ -357,7 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
             renderAdminItemSummary(snapshot, ordersList);
           }
         });
-        const container = getElementById("orders-section")
+        const container = document.getElementById('orders-section');
         container.scrollTop = lastscrollContainer;
         console.log(`After: ${lastscrollContainer}`)
       }
