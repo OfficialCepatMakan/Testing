@@ -352,15 +352,13 @@ document.addEventListener("DOMContentLoaded", () => {
             }); // end each order in group
           }); // end each dateKey
         
-          // restore scroll
-          scrollContainer.scrollTop = lastscrollContainer;
-          console.log(scrollContainer)
-        
           // admin summary
           if (admins.includes(mail)) {
             renderAdminItemSummary(snapshot, ordersList);
           }
         });
+        scrollContainer.scrollTop = lastscrollContainer;
+        console.log(scrollContainer)
       }
 
     document.getElementById('order-btn').addEventListener('click', function () {
@@ -846,6 +844,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
 
 
 
