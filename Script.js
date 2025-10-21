@@ -180,7 +180,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const scrollPos = document.getElementById('orders-section');
 
       scrollPos.addEventListener('scroll', () => {
-        lastScrollPos = scrollContainer.scrollTop;
+        lastScrollPos = scrollPos.scrollTop;
+        console.log(lastScrollPos)
       });
       
       function fetchAndRenderOrders(mail, admins, courier) {
@@ -193,7 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
           console.error("No #orders-list element found in DOM");
           return;
         }
-        console.log(lastScrollPos)
         ordersList.innerHTML = ''; // clear existing orders
         const isCourier = Array.isArray(courier) ? courier.includes(mail) : (courier === mail);
       
@@ -846,6 +846,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
 
 
 
