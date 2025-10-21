@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   
       let lastscrollContainer = 0;
-      const scrollContainer = document.getElementById('orders-section');
+      const scrollContainer = document.getElementById('orders-scroll');
 
       scrollContainer.addEventListener('scroll', () => {
         lastscrollContainer = scrollContainer.scrollTop;
@@ -357,7 +357,7 @@ document.addEventListener("DOMContentLoaded", () => {
             renderAdminItemSummary(snapshot, ordersList);
           }
         });
-        const container = document.getElementById('orders-section');
+        const container = document.getElementById('orders-scroll');
         container.scrollTop = lastscrollContainer;
         console.log(`After: ${lastscrollContainer}`)
       }
