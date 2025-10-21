@@ -189,7 +189,6 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(admins);
         const ordersRef = db.ref('Orders');
         const ordersList = document.getElementById('orders-list');
-        const ordersSection = document.getElementById('orders-section');
         if (!ordersList) {
           console.error("No #orders-list element found in DOM");
           return;
@@ -354,7 +353,8 @@ document.addEventListener("DOMContentLoaded", () => {
           }); // end each dateKey
         
           // restore scroll
-          ordersSection.scrollTop = lastScrollPos;
+          scrollPos.scrollTop = lastScrollPos;
+          console.log(scrollPos)
         
           // admin summary
           if (admins.includes(mail)) {
@@ -846,6 +846,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
 
 
 
