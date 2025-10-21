@@ -177,7 +177,7 @@
       transform: translateY(-70px);
     }
 
-    .orders-scroll {
+    #orders-scroll {
       height: 95vh;
       overflow-y: auto;
     }
