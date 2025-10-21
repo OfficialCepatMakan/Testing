@@ -181,11 +181,12 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log(admins);
         const ordersRef = db.ref('Orders');
         const ordersList = document.getElementById('orders-list');
+        const ordersSection = document.getElementById('orders-section');
         if (!ordersList) {
           console.error("No #orders-list element found in DOM");
           return;
         }
-        const scrollPos = ordersList.scrollTop;
+        const scrollPos = ordersSection.scrollTop;
         console.log(scrollPos)
         ordersList.innerHTML = ''; // clear existing orders
         const isCourier = Array.isArray(courier) ? courier.includes(mail) : (courier === mail);
@@ -347,7 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }); // end each dateKey
         
           // restore scroll
-          ordersList.scrollTop = scrollPos;
+          ordersSection.scrollTop = scrollPos;
         
           // admin summary
           if (admins.includes(mail)) {
