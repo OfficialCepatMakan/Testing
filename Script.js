@@ -185,6 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
       
       function fetchAndRenderOrders(mail, admins, courier) {
         console.log(lastscrollContainer)
+        let scrollpos = lastscrollContainer
         console.log(mail);
         console.log(admins);
         const ordersRef = db.ref('Orders');
@@ -357,8 +358,8 @@ document.addEventListener("DOMContentLoaded", () => {
             renderAdminItemSummary(snapshot, ordersList);
           }
           const container = document.getElementById('orders-scroll');
-          console.log(lastscrollContainer)
-          container.scrollTop = lastscrollContainer;
+          console.log(scrollpos)
+          container.scrollTop = scrollpos;
         });
       }
 
@@ -845,5 +846,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
 
 
