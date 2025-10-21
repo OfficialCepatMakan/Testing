@@ -177,8 +177,8 @@
       transform: translateY(-70px);
     }
 
-    .orders-section {
-      height: 98vh;
+    .orders-scroll {
+      height: 95vh;
       overflow-y: auto;
     }
 
@@ -1018,6 +1018,5 @@
             grid-template-columns: 1fr;
         }
     }
-
 
 
