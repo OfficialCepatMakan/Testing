@@ -356,13 +356,15 @@ document.addEventListener("DOMContentLoaded", () => {
           if (admins.includes(mail)) {
             renderAdminItemSummary(snapshot, ordersList);
           }
-        });
-        window.addEventListener('load', () => {
-          setTimeout(() => {
-            const container = document.getElementById('orders-scroll');
-            container.scrollTop = lastscrollContainer;
-            console.log('Restored scroll after full load:', lastscrollContainer);
-          }, 0);
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              const container = document.getElementById('orders-scroll');
+              if (container) {
+                container.scrollTop = lastscrollContainer;
+                console.log('Scroll really restored:', lastscrollContainer);
+              }
+            });
+          });
         });
       }
 
