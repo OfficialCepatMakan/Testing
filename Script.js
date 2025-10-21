@@ -181,7 +181,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       scrollContainer.addEventListener('scroll', () => {
         lastscrollContainer = scrollContainer.scrollTop;
-        console.log(lastscrollContainer)
       });
       
       function fetchAndRenderOrders(mail, admins, courier) {
@@ -847,6 +846,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
 
 
 
