@@ -356,22 +356,8 @@ document.addEventListener("DOMContentLoaded", () => {
           if (admins.includes(mail)) {
             renderAdminItemSummary(snapshot, ordersList);
           }
-          requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-              setTimeout(() => {
-                const container = document.getElementById('orders-scroll');
-                if (container) {
-                  container.scrollTop = lastscrollContainer;
-                  console.log(
-                    'Scroll *actually* restored:',
-                    lastscrollContainer,
-                    'Now at:',
-                    container.scrollTop
-                  );
-                }
-              }, 50);
-            });
-          });
+          console.log(lastscrollContainer)
+          container.scrollTop = lastscrollContainer;
         });
       }
 
