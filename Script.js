@@ -357,9 +357,10 @@ document.addEventListener("DOMContentLoaded", () => {
             renderAdminItemSummary(snapshot, ordersList);
           }
         });
-        const container = document.getElementById('orders-scroll');
-        container.scrollTop = lastscrollContainer;
-        console.log(`After: ${lastscrollContainer}`)
+        setTimeout(() => {
+          container.scrollTop = lastscrollContainer;
+          console.log('Forced scroll restore:', lastscrollContainer);
+        }, 0);
       }
 
     document.getElementById('order-btn').addEventListener('click', function () {
@@ -845,3 +846,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
