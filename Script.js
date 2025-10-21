@@ -356,6 +356,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (admins.includes(mail)) {
             renderAdminItemSummary(snapshot, ordersList);
           }
+          const container = document.getElementById('orders-scroll');
           console.log(lastscrollContainer)
           container.scrollTop = lastscrollContainer;
         });
