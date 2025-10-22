@@ -455,15 +455,16 @@ document.addEventListener("DOMContentLoaded", () => {
         
       const user = firebase.auth().currentUser;
       if (user && adminEmails.includes(user.email)) {
+        
+        adminBtn.addEventListener("click", () => {
+            console.log("showing admin")
+            adminSection.style.display = "block";
+            orderSection.style.display = "none";
+            menuSection.style.display = "none";
+            cartSection.style.display = "none";
+            console.log("opening admin");
+        });
       }
-      adminBtn.addEventListener("click", () => {
-          console.log("showing admin")
-          adminSection.style.display = "block";
-          orderSection.style.display = "none";
-          menuSection.style.display = "none";
-          cartSection.style.display = "none";
-          console.log("opening admin");
-      });
 
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -847,6 +848,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
 
 
 
