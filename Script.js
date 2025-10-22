@@ -455,14 +455,15 @@ document.addEventListener("DOMContentLoaded", () => {
         
       const user = firebase.auth().currentUser;
       if (user && adminEmails.includes(user.email)) {
-        adminBtn.addEventListener("click", () => {
+      }
+      adminBtn.addEventListener("click", () => {
+          console.log("showing admin")
           adminSection.style.display = "block";
           orderSection.style.display = "none";
           menuSection.style.display = "none";
           cartSection.style.display = "none";
           console.log("opening admin");
-        });
-      }
+      });
 
     auth.onAuthStateChanged((user) => {
       if (user) {
