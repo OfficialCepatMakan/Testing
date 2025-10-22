@@ -410,61 +410,54 @@ document.addEventListener("DOMContentLoaded", () => {
         darkIcon.innerHTML = isDark ? sunSVG : moonSVG;
         localStorage.setItem("theme", isDark ? "dark" : "light");
     });
+
     fetch('Admins.json')
-      .then(response => response.json())
+      .then(res => res.json())
       .then(data => {
         adminEmails = data.adminEmails;
         console.log("Loaded admin emails:", adminEmails);
-        const user = firebase.auth().currentUser;
-        if (user && adminEmails.includes(user.email)) {
-          adminBtn.style.display = "block";
-        }
-      })
-      .catch(error => {
-        console.error("Failed to load admins.json:", error);
-      });
-
-
-    menuBtn2.addEventListener("click", () => {
-        menuSection.style.display = "grid";
-        cartSection.style.display = "none";
-        orderSection.style.display = "none";
-        adminSection.style.display ="none";
-      });
-      console.log(user && adminEmails.includes(user.email));
-      adminBtn.addEventListener("click", () => {
-        console.log("showing admin");
-        adminSection.style.display = "block";
-        orderSection.style.display = "none";
-        menuSection.style.display = "none";
-        cartSection.style.display = "none";
-        console.log("opening admin");
-      });
-      cartBtn.addEventListener("click", () => {
-        menuSection.style.display = "none";
-        cartSection.style.display = "block";
-        orderSection.style.display = "none";
-        adminSection.style.display ="none";
-      });
-      orderBtn.addEventListener("click", () => {
-        orderSection.style.display = "block";
-
-        const user = firebase.auth().currentUser;
-        if (user && user.email) {
-          fetchAndRenderOrders(user.email, adminEmails, courierEmails);
-          setInterval(() => {
-            const user = firebase.auth().currentUser;
-            fetchAndRenderOrders(user.email, adminEmails, courierEmails);
-          }, 5000);
+      
+        auth.onAuthStateChanged(user => {
+          if (!user) return console.error("No user signed in yet");
           
-        } else {
-          console.error("No user signed in");
-        }
+          console.log("User:", user.email);
+        
+          menuBtn2.addEventListener("click", () => {
+            menuSection.style.display = "grid";
+            cartSection.style.display = "none";
+            orderSection.style.display = "none";
+            adminSection.style.display ="none";
+          });
+        
+          cartBtn.addEventListener("click", () => {
+            menuSection.style.display = "none";
+            cartSection.style.display = "block";
+            orderSection.style.display = "none";
+            adminSection.style.display ="none";
+          });
+        
+          orderBtn.addEventListener("click", () => {
+            orderSection.style.display = "block";
+            fetchAndRenderOrders(user.email, adminEmails, courierEmails);
+            menuSection.style.display = "none";
+            cartSection.style.display = "none";
+            adminSection.style.display ="none";
+          });
+        
+          if (adminEmails.includes(user.email)) {
+            adminBtn.addEventListener("click", () => {
+              console.log("showing admin");
+              adminSection.style.display = "block";
+              orderSection.style.display = "none";
+              menuSection.style.display = "none";
+              cartSection.style.display = "none";
+              console.log("opening admin");
+            });
+          }
+        });
+      })
+      .catch(err => console.error("Failed to load admins.json:", err));
 
-        menuSection.style.display = "none";
-        cartSection.style.display = "none";
-        adminSection.style.display ="none";
-      });
 
     auth.onAuthStateChanged((user) => {
       if (user) {
