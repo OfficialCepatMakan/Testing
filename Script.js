@@ -449,11 +449,23 @@ document.addEventListener("DOMContentLoaded", () => {
           adminEmails = data.adminEmails;
           console.log("Loaded admin emails:", adminEmails);
         
+          const user = firebase.auth().currentUser;
+          if (user && adminEmails.includes(user.email)) {
+            console.log(user && adminEmails.includes(user.email));
+            adminBtn.addEventListener("click", () => {
+              console.log("showing admin");
+              adminSection.style.display = "block";
+              orderSection.style.display = "none";
+              menuSection.style.display = "none";
+              cartSection.style.display = "none";
+              console.log("opening admin");
+            });
+          }
         })
         .catch(error => {
           console.error("Failed to load admins.json:", error);
         });
-        
+      
       const user = firebase.auth().currentUser;
       if (user && adminEmails.includes(user.email)) {
         console.log(user && adminEmails.includes(user.email))
@@ -849,10 +861,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
-
-
-
-
-
-
-
