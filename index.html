@@ -210,7 +210,33 @@
     </aside>
 
     <aside class="Admin-section" id="admin-section" style="display: none;">
-        <h2>Work in progress</h2>
+      <section class="add-section">
+      <form id="menuForm">
+        <h2>Add Menu Item</h2>
+        <label>Name:
+          <input type="text" id="name" required />
+        </label>
+        <label>Price (number):
+          <input type="number" id="price" />
+        </label>
+        <label>Description:
+          <input type="text" id="description" />
+        </label>
+        <label>Image URL:
+          <input type="text" id="image" />
+        </label>
+        <label>Stock:
+          <input type="number" id="stock" ></input>
+        </label>
+        <label>Filter:
+          <select id="filterdropdown" name="filterdropdown">
+            <option value="food">Food</option>
+            <option value="drink">Drink</option>
+          </select>
+        </label>
+        <button type="submit">Add to DB</button>
+      </form>
+      </section>
     </aside>
 
     <div id="ghost-container"></div>
@@ -226,4 +252,3 @@
     
 </body>
 </html>
-
