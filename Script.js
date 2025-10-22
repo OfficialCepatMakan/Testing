@@ -415,6 +415,10 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(data => {
         adminEmails = data.adminEmails;
         console.log("Loaded admin emails:", adminEmails);
+        const user = firebase.auth().currentUser;
+        if (user && adminEmails.includes(user.email)) {
+          adminBtn.style.display = "block";
+        }
       })
       .catch(error => {
         console.error("Failed to load admins.json:", error);
@@ -427,18 +431,15 @@ document.addEventListener("DOMContentLoaded", () => {
         orderSection.style.display = "none";
         adminSection.style.display ="none";
       });
-      const user = firebase.auth().currentUser;
-        if (user && adminEmails.includes(user.email)) {
-          console.log(user && adminEmails.includes(user.email));
-          adminBtn.addEventListener("click", () => {
-            console.log("showing admin");
-            adminSection.style.display = "block";
-            orderSection.style.display = "none";
-            menuSection.style.display = "none";
-            cartSection.style.display = "none";
-            console.log("opening admin");
-          });
-        }
+      console.log(user && adminEmails.includes(user.email));
+      adminBtn.addEventListener("click", () => {
+        console.log("showing admin");
+        adminSection.style.display = "block";
+        orderSection.style.display = "none";
+        menuSection.style.display = "none";
+        cartSection.style.display = "none";
+        console.log("opening admin");
+      });
       cartBtn.addEventListener("click", () => {
         menuSection.style.display = "none";
         cartSection.style.display = "block";
