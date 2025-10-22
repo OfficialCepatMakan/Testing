@@ -419,21 +419,20 @@ document.addEventListener("DOMContentLoaded", () => {
       
         auth.onAuthStateChanged(user => {
           if (!user) return console.error("No user signed in yet");
-          
           console.log("User:", user.email);
         
           menuBtn2.addEventListener("click", () => {
             menuSection.style.display = "grid";
             cartSection.style.display = "none";
             orderSection.style.display = "none";
-            adminSection.style.display ="none";
+            adminSection.style.display = "none";
           });
         
           cartBtn.addEventListener("click", () => {
             menuSection.style.display = "none";
             cartSection.style.display = "block";
             orderSection.style.display = "none";
-            adminSection.style.display ="none";
+            adminSection.style.display = "none";
           });
         
           orderBtn.addEventListener("click", () => {
@@ -441,10 +440,12 @@ document.addEventListener("DOMContentLoaded", () => {
             fetchAndRenderOrders(user.email, adminEmails, courierEmails);
             menuSection.style.display = "none";
             cartSection.style.display = "none";
-            adminSection.style.display ="none";
+            adminSection.style.display = "none";
           });
         
           if (adminEmails.includes(user.email)) {
+            adminBtn.style.display = "block"; // Show the button if user is admin
+          
             adminBtn.addEventListener("click", () => {
               console.log("showing admin");
               adminSection.style.display = "block";
@@ -457,8 +458,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       })
       .catch(err => console.error("Failed to load admins.json:", err));
-
-
+    
     auth.onAuthStateChanged((user) => {
       if (user) {
         console.log("User signed in:", user.displayName);
