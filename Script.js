@@ -92,6 +92,7 @@ sidePanel.querySelectorAll(".nav-buttons button").forEach(btn => {
     console.log("removing notif");
 
     hideAllSections();
+    console.log(section, sections[section]);
     sections[section].forEach(el => el.style.display = "block"); // ✅ works for grouped ones
   });
 });
@@ -848,6 +849,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
 
 
 
