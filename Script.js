@@ -455,7 +455,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
       const user = firebase.auth().currentUser;
       if (user && adminEmails.includes(user.email)) {
-        console.log(user && adminEmails.includes(user.email)
+        console.log(user && adminEmails.includes(user.email))
         adminBtn.addEventListener("click", () => {
             console.log("showing admin")
             adminSection.style.display = "block";
@@ -848,6 +848,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
 
 
 
