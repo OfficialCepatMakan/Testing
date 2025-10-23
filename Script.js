@@ -573,7 +573,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       })
       .catch(err => console.error("Failed to load admins.json:", err));
-    
+    setInterval(() => {
+      const user = firebase.auth().currentUser;
+      if (user && user.email) {
+        fetchAndRenderOrders(user.email, adminEmails, courierEmails);
+        console.log("🔄 Orders fetched for:", user.email);
+      } else {
+        console.warn("⚠️ No user signed in, skipping fetch");
+      }
+    }, 5000);
+
     auth.onAuthStateChanged((user) => {
       if (user) {
         console.log("User signed in:", user.displayName);
@@ -645,18 +654,28 @@ document.addEventListener("DOMContentLoaded", () => {
       document.querySelector('.item-count').textContent = `${count} items`;
     });
   }
-
+  
   function createMenuItem(key, item) {
     const menuItem = document.createElement('div');
     menuItem.className = 'menu-item';
-
+  
+    // Calculate discounted price if any
+    let priceHTML = `Rp ${item.price.toLocaleString('id-ID')}`;
+    if (item.discount && item.discount > 0) {
+      const discountedPrice = item.price * (1 - item.discount / 100);
+      priceHTML = `
+        <span class="original-price">Rp ${item.price.toLocaleString('id-ID')}</span>
+        <span class="discounted-price">Rp ${discountedPrice.toLocaleString('id-ID')}</span>
+      `;
+    }
+  
     menuItem.innerHTML = `
-      <div class="item-image"><img src="${item.image}"></img></div>
-      <div class="websss"><img src="Webs.png" style="width: 150px; height: auto;"></img></div>
+      <div class="item-image"><img src="${item.image}"></div>
+      <div class="websss"><img src="Webs.png" style="width: 150px; height: auto;"></div>
       <div class="item-content">
         <div class="item-header">
           <h4 class="item-name">${item.name}</h4>
-          <span class="item-price">Rp ${item.price.toLocaleString('id-ID')}</span>
+          <span class="item-price">${priceHTML}</span>
         </div>
         <p class="item-description">${item.description}</p>
         <p class="item-stock">Stock: ${item.stock}</p>
@@ -670,10 +689,12 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       </div>
     `;
-
+  
     setupQuantityLogic(menuItem, key, item, item.stock);
     return menuItem;
   }
+  
+  
   function updateCartDisplay() {
     const cartCount = document.querySelector('.cart-count');
     const cartItemsContainer = document.querySelector('.cart-items');
