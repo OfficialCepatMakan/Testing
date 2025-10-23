@@ -1115,7 +1115,7 @@
       margin-right: 6px;
     }
     .discounted-price {
-      color: #e53935;
+      color: var(--accent-hover);
       font-weight: bold;
     }
     .order-btn:hover {
