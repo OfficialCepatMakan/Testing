@@ -1,4 +1,4 @@
-auth = firebase.auth();
+const auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
 const menuBtn = document.getElementById("menu-button");
 const sidePanel = document.getElementById("side-panel");
@@ -721,7 +721,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let totalPrice = 0;
 
     cart.forEach((item) => {
-      console.log("Cart item data:", item);
       totalItems += item.quantity;
     
       // Apply discount if available
@@ -817,17 +816,28 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
 
-      // ✅ Build order object
+      // ✅ Build order object safely
       const orderData = {
         name,
         grade,
         class: className,
         paymentMethod,
-        items: cart,
-        total: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
         mail,
-        timestamp: `${String(new Date().getDate()).padStart(2, '0')}/${String(new Date().getMonth() + 1).padStart(2, '0')}/${String(new Date().getFullYear()).slice(-2)}`
+        timestamp: `${String(new Date().getDate()).padStart(2, '0')}/${String(new Date().getMonth() + 1).padStart(2, '0')}/${String(new Date().getFullYear()).slice(-2)}`,
+        items: cart.map(item => ({
+          name: item.name ?? 'Unnamed Item',
+          price: item.price ?? 0,
+          quantity: item.quantity ?? 1,
+          stock: item.stock ?? 0,
+          discount: item.discount ?? 0
+        })),
+        total: cart.reduce((sum, item) => {
+          const discount = item.discount ?? 0;
+          const discountedPrice = item.price - (item.price * discount / 100);
+          return sum + discountedPrice * item.quantity;
+        }, 0)
       };
+
 
       // ✅ Push order
       ordersRef.push(orderData)
@@ -988,6 +998,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
-
-
-
