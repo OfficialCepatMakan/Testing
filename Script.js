@@ -721,6 +721,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let totalPrice = 0;
 
     cart.forEach((item) => {
+      console.log("Cart item data:", item);
       totalItems += item.quantity;
     
       // Apply discount if available
@@ -986,3 +987,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
