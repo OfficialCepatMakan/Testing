@@ -1113,6 +1113,7 @@
       text-decoration: line-through;
       color: #888;
       margin-right: 6px;
+      font-size: 9px;
     }
     .discounted-price {
       color: var(--accent-hover);
