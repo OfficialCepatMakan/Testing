@@ -444,7 +444,7 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         
           if (adminEmails.includes(user.email)) {
-            adminBtn.style.display = "block"; // Show the button if user is admin
+            adminBtn.style.display = "inline-block"; // Show the button if user is admin
           
             adminBtn.addEventListener("click", () => {
               console.log("showing admin");
