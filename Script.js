@@ -1,4 +1,4 @@
-const auth = firebase.auth();
+auth = firebase.auth();
 const provider = new firebase.auth.GoogleAuthProvider();
 const menuBtn = document.getElementById("menu-button");
 const sidePanel = document.getElementById("side-panel");
@@ -987,4 +987,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
 
