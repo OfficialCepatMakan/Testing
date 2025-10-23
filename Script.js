@@ -444,7 +444,7 @@ document.addEventListener("DOMContentLoaded", () => {
           });
         
           if (adminEmails.includes(user.email)) {
-            adminBtn.style.display = "inline-block"; // Show the button if user is admin
+            adminBtn.style.display = "flex"; // Show the button if user is admin
           
             adminBtn.addEventListener("click", () => {
               console.log("showing admin");
@@ -841,3 +841,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
