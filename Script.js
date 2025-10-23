@@ -898,7 +898,8 @@ document.addEventListener("DOMContentLoaded", () => {
           name: item.name,
           price: item.price,
           quantity: quantity,
-          stock: item.stock
+          stock: item.stock,
+          discount: item.discount
         });
         alert("Item has been added to cart, press the 3 dots button to open cart")
         document.getElementById("btn-cart").classList.add("has-notification");
@@ -987,5 +988,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
 
 
