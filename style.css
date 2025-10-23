@@ -1111,7 +1111,7 @@
     }
     .original-price {
       text-decoration: line-through;
-      color: #888;
+      color: var(--danger-color);
       margin-right: 6px;
       font-size: 9px;
     }
