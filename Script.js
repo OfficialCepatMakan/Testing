@@ -304,7 +304,6 @@ document.addEventListener("DOMContentLoaded", () => {
       function fetchAndRenderOrders(mail, admins, courier) {
         console.log(lastscrollContainer)
         let scrollpos = lastscrollContainer
-        let currentorder = 0
         console.log(mail);
         console.log(admins);
         const ordersRef = db.ref('Orders');
