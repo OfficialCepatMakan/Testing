@@ -306,6 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let scrollpos = lastscrollContainer
         console.log(mail);
         console.log(admins);
+        let currentOrders = 0;
         const ordersRef = db.ref('Orders');
         const ordersList = document.getElementById('orders-list');
         if (!ordersList) {
