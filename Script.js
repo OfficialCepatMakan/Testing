@@ -486,8 +486,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
           if (!firstRun && currentOrders > previousOrders) {
             const newOrders = currentOrders - previousOrders;
+            const audio = new Audio('alarm.mp3');
             console.log(`🚨 ${newOrders} new order(s) detected!`);
-            // you can trigger sound, notification, or reload UI here
+            audio.play();
           }
           
           previousOrders = currentOrders;
@@ -1014,4 +1015,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
 
