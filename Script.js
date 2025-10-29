@@ -18,6 +18,8 @@ const tutorial = document.getElementById("btn-tutorial")
 const menuBtn3 = document.querySelector(".menu-btn");
 const btnCart = document.getElementById("btn-cart");
 let cart = []
+let previousOrders = 0;
+let firstRun = true;
 loadMenu("all");
 
 gradeSelect.addEventListener("change", function () {
@@ -302,6 +304,7 @@ document.addEventListener("DOMContentLoaded", () => {
       function fetchAndRenderOrders(mail, admins, courier) {
         console.log(lastscrollContainer)
         let scrollpos = lastscrollContainer
+        let currentorder = 0
         console.log(mail);
         console.log(admins);
         const ordersRef = db.ref('Orders');
@@ -324,12 +327,16 @@ document.addEventListener("DOMContentLoaded", () => {
           const dateMap = {};          // dateKey -> Date object (for sorting)
         
           snapshot.forEach((childSnapshot) => {
+            currentorder =+ 1
             const order = childSnapshot.val();
             const orderId = childSnapshot.key;
           
             // only include orders the user should see
             if (!(order && (order.mail === mail || admins.includes(mail) || isCourier))) {
               return;
+            }
+            if (order && (order.mail === mail || admins.includes(mail) || courier.includes(mail))) {
+              currentOrders += 1;
             }
           
             const dObj = parseTimestampToDate(order.timestamp);
@@ -476,6 +483,15 @@ document.addEventListener("DOMContentLoaded", () => {
           const container = document.getElementById('orders-scroll');
           console.log(scrollpos)
           container.scrollTop = scrollpos;
+
+          if (!firstRun && currentOrders > previousOrders) {
+            const newOrders = currentOrders - previousOrders;
+            console.log(`🚨 ${newOrders} new order(s) detected!`);
+            // you can trigger sound, notification, or reload UI here
+          }
+          
+          previousOrders = currentOrders;
+          firstRun = false;
         });
       }
 
@@ -998,3 +1014,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
