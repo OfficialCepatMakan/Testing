@@ -678,6 +678,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
     // Calculate discounted price if any
     let priceHTML = `Rp ${item.price.toLocaleString('id-ID')}`;
+    const limited = item.limited == "yes" ? "[LIMITED]" : "";
     if (item.discount && item.discount > 0) {
       const discountedPrice = item.price * (1 - item.discount / 100);
       priceHTML = `
@@ -691,7 +692,7 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="websss"><img src="Webs.png" style="width: 150px; height: auto;"></div>
       <div class="item-content">
         <div class="item-header">
-          <h4 class="item-name">${item.name}</h4>
+          <h4 class="item-name">${limited} ${item.name}</h4>
           <span class="item-price">${priceHTML}</span>
         </div>
         <p class="item-description">${item.description}</p>
@@ -1015,5 +1016,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // spawn a new ghost every 2 seconds
   setInterval(spawnGhost, Math.floor(Math.random() * (10000 - 5000 + 1)) + 5000);
+
 
 
